@@ -64,13 +64,18 @@ public class JobTest {
     }
     @Test
     public void testToStringHandlesEmptyField(){
-        Job test_job = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        Job test_job = new Job("Product Tester", new Employer(""), new Location("Desert"), new PositionType(""), new CoreCompetency(""));
         assertEquals("\nID: " + test_job.getId() +
-                "\nName: Data not available" +
+                "\nName: Product Tester" +
                 "\nEmployer: Data not available" +
-                "\nLocation: Data not available" +
+                "\nLocation: Desert" +
                 "\nPosition Type: Data not available" +
                 "\nCore Competency: Data not available\n", test_job.toString());
+    }
+    @Test
+    public void testToStringHandlesOnlyIdField(){
+        Job test_job = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        assertEquals("\nOOPS! This job does not seem to exist.\n", test_job.toString());
     }
 
 }
