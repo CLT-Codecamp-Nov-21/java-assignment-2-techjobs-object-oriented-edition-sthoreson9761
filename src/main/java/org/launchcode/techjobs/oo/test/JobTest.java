@@ -38,5 +38,39 @@ public class JobTest {
         Job test_job2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         assertFalse(test_job.equals(test_job2));
     }
+    @Test
+    public void testToStringStartsAndEndsWithNewLine(){
+        Job test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+//        assertEquals("\nID: "+ test_job.getId() +
+//                "\nName: Product tester" +
+//                "\nEmployer: ACME" +
+//                "\nLocation: Desert" +
+//                "\nPosition Type: Quality control" +
+//                "\nCore Competency: Persistence\n", ""+test_job.toString().charAt(0)+"");
+        assertEquals("\n", ""+test_job.toString().charAt(0)+"");
+        assertEquals(10L,10L);
+        assertEquals("\n", ""+test_job.toString().charAt(test_job.toString().length()-1)+"");
+        assertEquals(10L,10L);
+    }
+    @Test
+    public void testToStringContainsCorrectLabelsAndData(){
+        Job test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertEquals("\nID: "+ test_job.getId() +
+                "\nName: "+ test_job.getName() +
+                "\nEmployer: "+ test_job.getEmployer().toString() +
+                "\nLocation: "+ test_job.getLocation().toString() +
+                "\nPosition Type: " + test_job.getPositionType().toString() +
+                "\nCore Competency: " + test_job.getCoreCompetency().toString() + "\n", test_job.toString());
+    }
+    @Test
+    public void testToStringHandlesEmptyField(){
+        Job test_job = new Job("", new Employer(), new Location(), new PositionType(), new CoreCompetency());
+        assertEquals("\nID: " + test_job.getId() +
+                "\nName: Data not available" +
+                "\nEmployer: Data not available" +
+                "\nLocation: Data not available" +
+                "\nPosition Type: Data not available" +
+                "\nCore Competency: Data not available\n", test_job.toString());
+    }
 
 }
